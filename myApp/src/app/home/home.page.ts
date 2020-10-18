@@ -10,11 +10,11 @@ import { ActionService } from '../config/service/action.service';
 export class HomePage {
   public actionTypes = ActionType;
   constructor(public actionService: ActionService) { }
-  commandClicked($event: Action): void {
-    this.actionService.commands.push($event);
+  actionClicked($event: Action): void {
+    this.actionService.actions.push($event);
   }
 
   executeClick(): void {
-    this.actionService.executecommands();
+    this.actionService.executeactions();
   }
 }

@@ -7,18 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
- <app-place-action (commandClick)="commandClicked($event);"></app-place-action>
- <app-step-track-action [commandType]="actionTypes.Move" (commandClick)="commandClicked($event);"></app-step-track-action>
- <app-step-track-action [commandType]="actionTypes.Left" (commandClick)="commandClicked($event);"></app-step-track-action>
- <app-step-track-action [commandType]="actionTypes.Right" (commandClick)="commandClicked($event);"></app-step-track-action>
- <app-step-track-action [commandType]="actionTypes.Report" (commandClick)="commandClicked($event);"></app-step-track-action>
+ <app-place-action (actionClick)="actionClicked($event);"></app-place-action>
+ <app-step-track-action [actionType]="actionTypes.Move" (actionClick)="actionClicked($event);"></app-step-track-action>
+ <app-step-track-action [actionType]="actionTypes.Left" (actionClick)="actionClicked($event);"></app-step-track-action>
+ <app-step-track-action [actionType]="actionTypes.Right" (actionClick)="actionClicked($event);"></app-step-track-action>
+ <app-step-track-action [actionType]="actionTypes.Report" (actionClick)="actionClicked($event);"></app-step-track-action>
  <ion-button color="primary" (click)="executeClick()">Execute</ion-button>
  <h3>Command List</h3>
  <ion-grid>
-  <ion-row *ngFor="let command of actionService.commands">
+  <ion-row *ngFor="let action of actionService.actions">
       <ion-col>
           <div>
-              {{actionTypes[command.commandType]}}
+              {{actionTypes[action.actionType]}}
           </div>
       </ion-col>
   </ion-row>

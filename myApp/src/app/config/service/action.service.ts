@@ -10,41 +10,41 @@ import { ActionType } from '../action-type.enum';
 })
 export class ActionService {
 
-  public commands: Array<Action>;
+  public actions: Array<Action>;
     public reports: Array<string>;
 
     private robotPlaced: boolean;
 
     constructor(public playArea: TableArea, public robot: Robot) {
-        this.commands = new Array<Action>();
+        this.actions = new Array<Action>();
         this.reports = new Array<string>();
         this.robotPlaced = false;
     }
 
-    executecommands(): boolean {
-        if (_.isEmpty(this.commands)) {
+    executeactions(): boolean {
+        if (_.isEmpty(this.actions)) {
             return false;
         }
 
-        //get a reference to the service for use in the foreach and remove commands
+        //get a reference to the service for use in the foreach and remove actions
         let self = this;
 
-        //if the robot hasn't been placed we need to make sure the first command is a place command
+        //if the robot hasn't been placed we need to make sure the first action is a place action
         if (!this.robotPlaced) {
 
-            let firstValidPlacecommandIndex: number = 0;
+            let firstValidPlaceactionIndex: number = 0;
 
-            let placecommands = _.filter(this.commands, function (pc) { return pc.commandType == ActionType.Place });
+            let placeactions = _.filter(this.actions, function (pc) { return pc.actionType == ActionType.Place });
 
-            if (_.isEmpty(placecommands)) {
+            if (_.isEmpty(placeactions)) {
                 return false;
             }
 
-            for (let placecommand of placecommands) {
-                let pc = placecommand as PlaceAction;
+            for (let placeaction of placeactions) {
+                let pc = placeaction as PlaceAction;
                 if (this.robot.place(pc.location)) {
                     this.robotPlaced = true;
-                    firstValidPlacecommandIndex = this.commands.indexOf(placecommand, 0);
+                    firstValidPlaceactionIndex = this.actions.indexOf(placeaction, 0);
                     break;
                 }
             }
@@ -53,27 +53,27 @@ export class ActionService {
                 return false;
             }
 
-            //remove all the commands upto and including the first valid place command
-             _.remove(this.commands, command => self.commands.indexOf(command) <= firstValidPlacecommandIndex);
+            //remove all the actions upto and including the first valid place action
+             _.remove(this.actions, action => self.actions.indexOf(action) <= firstValidPlaceactionIndex);
         }
 
-        if (this.commands) {
-            this.commands.forEach(function (command) {
-                self.executecommand(command);
+        if (this.actions) {
+            this.actions.forEach(function (action) {
+                self.executeaction(action);
             });
         }
 
-        //clear the commands now they have been executed 
-        this.commands = new Array<Action>();
+        //clear the actions now they have been executed 
+        this.actions = new Array<Action>();
 
         return true;
     }
 
-    private executecommand(command: Action): void {
-        switch (command.commandType) {
+    private executeaction(action: Action): void {
+        switch (action.actionType) {
             case ActionType.Place:
-                let placecommand = command as PlaceAction;
-                this.robot.place(placecommand.location);
+                let placeaction = action as PlaceAction;
+                this.robot.place(placeaction.location);
                 break;
             case ActionType.Left:
                 this.robot.turnFaceLeft();

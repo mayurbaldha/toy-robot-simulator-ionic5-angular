@@ -8,28 +8,28 @@ import { Action } from 'src/app/config/model/action';
   styleUrls: ['./step-track-action.component.scss'],
 })
 export class StepTrackActionComponent implements OnInit {
-  private _commandType: ActionType;
+  private _actionType: ActionType;
 
-  get commandType(): ActionType {
-      return this._commandType;
+  get actionType(): ActionType {
+      return this._actionType;
   }
 
   @Input()
-  set commandType(commandType: ActionType) {
-      this._commandType = commandType;
-      this.commandName = ActionType[this._commandType];
-      // console.log(this._commandType,this.commandName);
+  set actionType(actionType: ActionType) {
+      this._actionType = actionType;
+      this.actionName = ActionType[this._actionType];
+      // console.log(this._actionType,this.actionName);
   }
 
-  @Output() commandClick = new EventEmitter<Action>();
+  @Output() actionClick = new EventEmitter<Action>();
 
-  public commandName: string;
+  public actionName: string;
 
   constructor() { }
 
   ngOnInit() {}
 
   public btnClick() {
-    this.commandClick.emit(new Action(this.commandType));
+    this.actionClick.emit(new Action(this.actionType));
 }
 }

@@ -18,7 +18,7 @@ export class PlaceActionComponent implements OnInit {
         return typeof val === 'number';
     });
 
-    @Output() commandClick = new EventEmitter<PlaceAction>();
+    @Output() actionClick = new EventEmitter<PlaceAction>();
 
     private xLocation: number;
     private yLocation: number;
@@ -40,7 +40,7 @@ export class PlaceActionComponent implements OnInit {
     this.xLocation = data.xPos;
     this.yLocation = data.yPos;
     this.direction = data.direction;
-    this.commandClick.emit(new PlaceAction(new Location(this.xLocation, this.yLocation, this.direction)));
+    this.actionClick.emit(new PlaceAction(new Location(this.xLocation, this.yLocation, this.direction)));
 }
 
 reset(): void {
