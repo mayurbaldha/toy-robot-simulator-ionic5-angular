@@ -14,7 +14,7 @@ export class HomePage {
     this.actionService.actions.push($event);
   }
 
-  executeClick(): void {
+  executeActionClick(): void {
     this.actionService.executeactions();
   }
 }

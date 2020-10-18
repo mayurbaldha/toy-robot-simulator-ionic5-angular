@@ -1,28 +1,34 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Toy-Robot Simulator
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
  <app-place-action (actionClick)="actionClicked($event);"></app-place-action>
+ <div class="ion-text-center">
  <app-step-track-action [actionType]="actionTypes.Move" (actionClick)="actionClicked($event);"></app-step-track-action>
  <app-step-track-action [actionType]="actionTypes.Left" (actionClick)="actionClicked($event);"></app-step-track-action>
  <app-step-track-action [actionType]="actionTypes.Right" (actionClick)="actionClicked($event);"></app-step-track-action>
  <app-step-track-action [actionType]="actionTypes.Report" (actionClick)="actionClicked($event);"></app-step-track-action>
- <ion-button color="primary" (click)="executeClick()">Execute</ion-button>
- <h3>Command List</h3>
+
+</div>
+ <div *ngIf="actionService.actions.length>0" class="ion-text-center">
+  <ion-button color="primary" (click)="executeActionClick()">Perform Actions</ion-button>
+ <h3>Action List</h3>
  <ion-grid>
-  <ion-row *ngFor="let action of actionService.actions">
+  <ion-row *ngFor="let action of actionService.actions;let i = index">
       <ion-col>
           <div>
-              {{actionTypes[action.actionType]}}
+            {{i+1}}.  {{actionTypes[action.actionType]}}
           </div>
       </ion-col>
   </ion-row>
 </ion-grid>
+</div>
+<div *ngIf="actionService.reports.length>0" class="ion-text-center">
  <h3>Report List</h3>
  <ion-grid>
   <ion-row *ngFor="let report of actionService.reports">
@@ -33,4 +39,5 @@
       </ion-col>
   </ion-row>
 </ion-grid>
+</div>
 </ion-content>

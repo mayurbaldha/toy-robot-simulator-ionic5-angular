@@ -29,6 +29,13 @@ allowed.
 EAST or WEST.
 
 ● The origin (0,0) can be considered to be the SOUTH WEST most corner.
+           N
+           |
+           |
+   W -------------- E
+           |
+           |
+           S 
 
 ● The first valid command to the robot is a PLACE command, after that, any sequence
 of commands may be issued, in any order, including another PLACE command. The
