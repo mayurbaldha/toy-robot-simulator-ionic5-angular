@@ -5,6 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { PlaceActionComponent } from '../components/place-action/place-action.component';
+import { StepTrackActionComponent } from '../components/step-track-action/step-track-action.component';
+import { ActionService } from '../config/service/action.service';
+import { ActionServiceFactory } from '../config/service/action-service-factory';
 
 
 @NgModule({
@@ -14,6 +18,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage,PlaceActionComponent,StepTrackActionComponent,],
+  providers:[{provide:ActionService,useFactory:ActionServiceFactory}]
 })
 export class HomePageModule {}
