@@ -4,9 +4,9 @@
       <ion-title size="large">Select start Values</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
+  <ion-content class="ion-padding">
   <ion-item>
-    <ion-label>X:</ion-label>
+    <ion-label>X<span style="color:red;">*</span> :</ion-label>
     <ion-select   placeholder="Select X" (ionChange)="onchangeX($event)">
       <ion-select-option value="0">0</ion-select-option>
       <ion-select-option value="1">1</ion-select-option>
@@ -17,7 +17,7 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label>Y:</ion-label>
+    <ion-label>Y<span style="color:red;">*</span> :</ion-label>
     <ion-select  placeholder="Select Y"  (ionChange)="onchangeY($event)">
       <ion-select-option value="0">0</ion-select-option>
       <ion-select-option value="1">1</ion-select-option>
@@ -28,7 +28,7 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label>Face Direction:</ion-label>
+    <ion-label>Face Direction<span style="color:red;">*</span> : </ion-label>
     <ion-select  placeholder="Select Direction" (ionChange)="ondirectionChange($event)">
       <ion-select-option value="1">North</ion-select-option>
       <ion-select-option value="3">South</ion-select-option>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-place-robot-form-modal',
@@ -8,7 +8,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class PlaceRobotFormModalComponent implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  constructor(public modalController: ModalController,public alertController: AlertController) { }
   xPos: any = null;
   yPos: any = null;
   direction: any = null;
@@ -26,13 +26,22 @@ export class PlaceRobotFormModalComponent implements OnInit {
   }
 
   ngOnInit() { }
-  placeRobot() {
+  async placeRobot() {
     if (this.xPos && this.yPos && this.direction) {
       this.modalController.dismiss({
         'xPos': Number.parseInt(this.xPos),
         'yPos': Number.parseInt(this.yPos),
         'direction': Number.parseInt(this.direction)
       });
+    }else{
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        subHeader: 'All fields are mandatory',
+        message: 'Please select X,Y and Direction',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
     }
 
   }
