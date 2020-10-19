@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { ActionType } from 'src/app/config/action-type.enum';
+import { Action } from 'src/app/config/model/action';
 
 import { StepTrackActionComponent } from './step-track-action.component';
 
@@ -10,7 +12,7 @@ describe('StepTrackActionComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ StepTrackActionComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),ActionType,Action]
     }).compileComponents();
 
     fixture = TestBed.createComponent(StepTrackActionComponent);

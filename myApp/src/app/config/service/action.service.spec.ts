@@ -13,4 +13,11 @@ describe('ActionService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('#executeactions should return value', () => {
+    expect(service.executeactions()).toBe(true);
+    expect(service.executeactions()).toBe(false);
+  });
+
+  
 });

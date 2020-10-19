@@ -68,7 +68,7 @@ export class ActionService {
 
         return true;
     }
-
+// finding functions for actions 
     private executeaction(action: Action): void {
         switch (action.actionType) {
             case ActionType.Place:
